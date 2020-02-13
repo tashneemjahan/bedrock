@@ -53,6 +53,13 @@ if ( ! function_exists( 'twentyfifteen_setup' ) ) :
  */
 function twentyfifteen_setup() {
 
+	add_action('rest_api_init', function () {
+		register_rest_route( 'mytwentyseventeentheme/v1', 'latest-posts/(?P<category_id>\d+)',array(
+					  'methods'  => 'GET',
+					  'callback' => 'get_latest_posts_by_category'
+			));
+	  });
+	  
 	/*
 	 * Make theme available for translation.
 	 * Translations can be filed in the /languages/ directory.
